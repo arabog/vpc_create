@@ -1,0 +1,21 @@
+[
+    {
+        "ParameterKey": "EnvironmentName",
+        "ParameterValue": "firstvpc"
+    },
+
+    {
+        "ParameterKey": "VpcCIDR",
+        "ParameterValue": "10.0.0.0/16"
+    },
+
+    {
+        "ParameterKey": "PublicSubnetCIDR",
+        "ParameterValue": "10.0.0.0/24"
+    },
+
+    {
+        "ParameterKey": "AMItoUse",
+        "ParameterValue": "ami-090fa75af13c156b4"
+    }
+]
