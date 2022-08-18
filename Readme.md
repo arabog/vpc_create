@@ -30,3 +30,9 @@ aws cloudformation create-stack \
 
 Describe stack  
 ![vpc6](vpc6.png?raw=true "vpc6")
+
+## Expected Output
+To verify, you will use the public IP address of the newly launched EC2 instance, and paste it in a new browser window. You should see the Apache web server test page.  
+
+Note: Use http ( not https! ), like so: http://public-ip-address  
+
