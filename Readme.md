@@ -36,3 +36,15 @@ To verify, you will use the public IP address of the newly launched EC2 instance
 
 Note: Use http ( not https! ), like so: http://public-ip-address  
 
+## To Run the User data
+Connect to the Instance or ssh into it. then install the steps manually.  
+```
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+```
+![ec21](ec21.png?raw=true "ec21")
+![ec22](ec22.png?raw=true "ec22")
+![ec23](ec23.png?raw=true "ec23")
+![ec24](ec24.png?raw=true "ec24")

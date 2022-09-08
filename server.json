@@ -1,17 +1,7 @@
 [
     {
         "ParameterKey": "EnvironmentName",
-        "ParameterValue": "vpc_ec2"
-    },
-
-    {
-        "ParameterKey": "VpcCIDR",
-        "ParameterValue": "10.0.0.0/16"
-    },
-
-    {
-        "ParameterKey": "PublicSubnetCIDR",
-        "ParameterValue": "10.0.0.0/24"
+        "ParameterValue": "vpc-ec2"
     },
 
     {

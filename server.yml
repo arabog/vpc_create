@@ -6,48 +6,19 @@ Parameters:
     Description: A Vpc and a EC2
     Type: String
 
-  VpcCIDR:
-    Description: An IP range of CIDR
-    Type: String
-    Default: 10.0.0.0/16
-
-  PublicSubnetCIDR:
-    Description: A VPC IP subset range of CIDR
-    Type: String
-    Default: 10.0.0.0/24
-
   AMItoUse: 
     Description: AMI to use for the base image
     Type: String
 
 Resources:
-  VPC:
-    Type: 'AWS::EC2::VPC'
-    Properties:
-      CidrBlock: !Ref VpcCIDR
-      EnableDnsHostnames: 'true'
-      EnableDnsSupport: 'true'
-      Tags: 
-      - Key: Name 
-        Value: !Sub ${EnvironmentName}
-
-  PublicSubnet: 
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: !Ref PublicSubnetCIDR
-      MapPublicIpOnLaunch: true
-      Tags: 
-        - Key: Name 
-          Value: !Sub ${EnvironmentName} Public Subnet
-
-
   # Amazon Linux EC2 Section
   SecGrp:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: Allow http to our host
-      VpcId: !Ref VPC
+      VpcId: 
+        Fn::ImportValue:
+          !Sub "${EnvironmentName}-VPCID"
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -73,13 +44,14 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref AMItoUse
+      KeyName: babs
       NetworkInterfaces: 
       - AssociatePublicIpAddress: "true"
         DeviceIndex: "0"
         GroupSet: 
           - Ref: SecGrp
         SubnetId:
-          Ref: "PublicSubnet"
+          Fn::ImportValue: !Sub "${EnvironmentName}-PubSID"
 
       UserData:
         Fn::Base64: !Sub |
@@ -87,7 +59,6 @@ Resources:
           sudo yum update -y
           sudo yum install -y httpd
           sudo systemctl start httpd
-          sudo systemctl enable httpd
 
       Tags: 
       - Key: Name 

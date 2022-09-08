@@ -51,11 +51,11 @@ Resources:
         - Key: Name
           Value: !Sub ${EnvironmentName} Public Subnet
 
-  ElasticIP:
-    Type: AWS::EC2::EIP
-    DependsOn: AttachInternetGateway
-    Properties:
-      Domain: VPC
+  # ElasticIP:
+  #   Type: AWS::EC2::EIP
+  #   DependsOn: AttachInternetGateway
+  #   Properties:
+  #     Domain: VPC
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -70,6 +70,7 @@ Resources:
     DependsOn: AttachInternetGateway
     Properties:
       RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGW
 
   AssociatePUBRT:
@@ -86,4 +87,8 @@ Outputs:
     Export:
       Name: !Sub ${EnvironmentName}-VPCID
 
-      
+  PublicSubnet:
+    Description: A reference to the created PS
+    Value: !Ref PublicSubnet
+    Export:
+      Name: !Sub ${EnvironmentName}-PubSID
