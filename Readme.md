@@ -45,6 +45,6 @@ sudo yum install -y httpd
 sudo systemctl start httpd
 ```
 ![ec21](ec21.png?raw=true "ec21")
-![ec22](ec22.png?raw=true "ec22")
 ![ec23](ec23.png?raw=true "ec23")
+![ec22](ec22.png?raw=true "ec22")
 ![ec24](ec24.png?raw=true "ec24")
