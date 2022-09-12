@@ -1,5 +1,5 @@
 Description:
-  A network for an EC2 with an IAM Admin role using IAC
+  A network for an EC2 using IAC
 
 Parameters:
   EnvironmentName:
@@ -51,11 +51,7 @@ Resources:
         - Key: Name
           Value: !Sub ${EnvironmentName} Public Subnet
 
-  # ElasticIP:
-  #   Type: AWS::EC2::EIP
-  #   DependsOn: AttachInternetGateway
-  #   Properties:
-  #     Domain: VPC
+  # ElasticIP: Not needed since no autoscaling
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable

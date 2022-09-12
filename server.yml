@@ -25,9 +25,9 @@ Resources:
           ToPort: 80
           CidrIp: 0.0.0.0/0
 
-        - IpProtocol: -1
-          FromPort: -1
-          ToPort: -1
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 0
           CidrIp: 0.0.0.0/0
 
       SecurityGroupEgress:
@@ -44,7 +44,7 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref AMItoUse
-      KeyName: unababs
+      # KeyName: unababs
       NetworkInterfaces: 
       - AssociatePublicIpAddress: "true"
         DeviceIndex: "0"
